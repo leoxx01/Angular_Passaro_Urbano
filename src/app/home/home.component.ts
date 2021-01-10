@@ -23,8 +23,8 @@ export class HomeComponent implements OnInit {
     //this.ofertas = this.ofertasService.getOfertas()
     //console.log(this.ofertas)
     
-  this.ofertasService.getOfertas2().then((data: Oferta[])=>{this.ofertas = data })
-  //this.ofertasService.getOfertas3().then((data: Oferta[])=>{this.ofertas = data })
+  //this.ofertasService.getOfertas2().then((data: Oferta[])=>{this.ofertas = data })
+  this.ofertasService.getOfertas3().then((data: Oferta[])=>{this.ofertas = data })
 
   }
 

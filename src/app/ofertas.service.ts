@@ -2,11 +2,12 @@ import  {Oferta} from './shared/oferta.model'
 import { HttpClient } from '@angular/common/http'
 import {Injectable} from '@angular/core'
 
+import {URL_API} from './app.api'
+import {URL_API_COMOUSAR } from './app.api'
+import {URL_API_ONDEFICA} from './app.api'
 
+@Injectable() // para poder injetar os services em outros lugares
 
-
-
-@Injectable()
 export class OfertasService{
 
     constructor(private http:  HttpClient ){
@@ -76,8 +77,31 @@ export class OfertasService{
         }) 
     }
     public getOfertas3(): Promise<Oferta[]>{
-       return this.http.get('localhost:3000/ofertas').toPromise().then((data: any)=>{
-            return data.json()
+       return this.http.get(`${URL_API}`).toPromise().then((data: Oferta[])=>{
+         
+            return data
+        })
+    }
+
+    public getOfertaPorCategoria(categoria: string): Promise<Oferta[]>{
+        return this.http.get(`${URL_API}?categoria=${categoria}`).toPromise().then((data: any)=>{   
+            console.log(data) 
+            return data
+        }).catch((err)=>{console.log(err)})
+    }
+    public getOfertaPorID(id: number): Promise<Oferta[]>{
+        return this.http.get(`${URL_API}?id=${id}`).toPromise().then((data: any)=>{
+            return data[0]
+        }).catch(err=>console.log(err))
+    }
+    public getComoUsarPorID(id: number): Promise<string>{
+        return this.http.get(`${URL_API_COMOUSAR}?id=${id}`).toPromise().then((data: any)=>{
+            return data[0].descricao
+        })
+    }
+    public getOndeFicaPorID(id: number): Promise<string>{
+        return this.http.get(`${URL_API_ONDEFICA}?id=${id}`).toPromise().then((data: any)=>{
+            return data[0].descricao
         })
     }
 }
