@@ -1,10 +1,13 @@
 import  {Oferta} from './shared/oferta.model'
-import { HttpClient } from '@angular/common/http'
+import { HttpClient, HttpEvent, HttpResponse} from '@angular/common/http'
 import {Injectable} from '@angular/core'
 
 import {URL_API} from './app.api'
 import {URL_API_COMOUSAR } from './app.api'
 import {URL_API_ONDEFICA} from './app.api'
+
+import { Observable } from 'rxjs'
+import { map, filter, scan, retry } from 'rxjs/operators';
 
 @Injectable() // para poder injetar os services em outros lugares
 
@@ -90,7 +93,7 @@ export class OfertasService{
         }).catch((err)=>{console.log(err)})
     }
     public getOfertaPorID(id: number): Promise<Oferta[]>{
-        return this.http.get(`${URL_API}?id=${id}`).toPromise().then((data: any)=>{
+        return this.http.get(`${URL_API}?id=${id}`).toPromise().then((data: any )=>{
             return data[0]
         }).catch(err=>console.log(err))
     }
@@ -104,4 +107,9 @@ export class OfertasService{
             return data[0].descricao
         })
     }
+    public pesquisaOfertas(termo: string): Observable<Oferta[]> {
+        return this.http.get(`${URL_API}?descricao_oferta_like=${termo}`).pipe(map((resposta: any)=> resposta),retry(10))
+        //return this.http.get(`${URL_API}?descricao_oferta_like=${termo}`).pipe(map((resposta: any)=> resposta),retry(10))
+        //Retry tenta fazer uma tentativa pelo valor estipulado dps das 10 tentativas ele explode o erro
+    } 
 }

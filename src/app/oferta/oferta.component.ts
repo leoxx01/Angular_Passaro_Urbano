@@ -1,4 +1,5 @@
 import { importType } from '@angular/compiler/src/output/output_ast';
+
 import { Component, OnInit ,OnDestroy} from '@angular/core';
 import {ActivatedRoute} from '@angular/router'
 
@@ -53,7 +54,7 @@ export class OfertaComponent implements OnInit, OnDestroy{
     }) */
   }
   ngOnDestroy(){
-   /*  this.meuObeservableTeste.unsubscribe() */
+   /*  this.meuObeservableTeste.  () */
   }
 
 }
