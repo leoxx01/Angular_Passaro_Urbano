@@ -26,14 +26,15 @@ export class OfertaComponent implements OnInit, OnDestroy{
 
   ngOnInit(): void {
     this.route.params.subscribe((param: any)=>{
-      this.id  = param.id
+      console.log(param)
+      this.ofertaService.getOfertaPorID(param.id).then((data:Oferta[])=>{
+        console.log(data)
+        this.data = data
+      })
     },(err)=>{console.log(err)},
     ()=>console.log("Teoricamento concluido")
     )
-    this.ofertaService.getOfertaPorID(this.id).then((data:Oferta[])=>{
-      console.log(data)
-      this.data = data
-    })
+   
 
    /*  let tempo = Observable.interval(500)
 

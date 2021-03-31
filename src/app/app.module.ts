@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule} from '@angular/core';
 import {  HttpClientModule } from '@angular/common/http'
 
 import { AppComponent } from './app.component';
@@ -15,6 +15,11 @@ import { OfertaComponent } from './oferta/oferta.component';
 import { ComoUsarComponent } from './oferta/como-usar/como-usar.component';
 import { OndeFicaComponent } from './oferta/onde-fica/onde-fica.component'
 
+//Pipe
+
+import {DescReduzida} from '../app/desc_reduzida.pipe'
+
+// Declara tudo que nos podemos usar na aplicação
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +30,8 @@ import { OndeFicaComponent } from './oferta/onde-fica/onde-fica.component'
     DivercaoComponent,
     OfertaComponent,
     ComoUsarComponent,
-    OndeFicaComponent
+    OndeFicaComponent,
+    DescReduzida
   ],
   imports: [
     BrowserModule,

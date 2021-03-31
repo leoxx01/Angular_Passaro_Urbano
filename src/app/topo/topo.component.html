@@ -11,8 +11,9 @@
           <!--Termo de pesquisa é uma variavel de referencia-->
           <input type="text" class='form-control' placeholder="Pesquise por ofertas ..." #termoDaPesquisa (keyup)="pesquisa(termoDaPesquisa.value)"/>
           <div class="list-group" style="position: absolute;">
-            <button type="button" class="list-group-item list-group-item-action " aria-current="true" *ngFor='let oferta of ofertas2' #teste (mouseover)="mouseIn(teste)" (mouseleave)="mouseOut(teste)">
-              {{oferta.titulo}}
+            <!--Poderia deixar o ngFor como oferta of ofertas async ele retorna só quando o evento estiver pronto-->
+            <button type="button" class="list-group-item list-group-item-action " aria-current="true" *ngFor='let oferta of ofertas2' #teste (mouseover)="mouseIn(teste)" (mouseleave)="mouseOut(teste)" (click)="limparPesquisa()"[routerLink]="['/oferta',oferta.id]">
+              {{oferta.titulo| desc_reduzida}}
             </button>
           </div>
   

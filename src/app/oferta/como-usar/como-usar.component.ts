@@ -17,6 +17,7 @@ export class ComoUsarComponent implements OnInit {
   constructor(private route : ActivatedRoute, private ofertasService: OfertasService) { }
 
   ngOnInit(): void {
+    //Rota parente quer dizer rota pai
     this.route.parent.params.subscribe((param: any)=>{
       this.id = param.id
     })

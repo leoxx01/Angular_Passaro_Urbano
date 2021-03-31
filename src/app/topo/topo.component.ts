@@ -42,7 +42,7 @@ export class TopoComponent implements OnInit {
     this.ofertas.subscribe((ofertas: Oferta[])=>{ 
       this.ofertas2 = ofertas
       console.log(ofertas)})
-  }
+    }
   public pesquisa(data: string): void{
     /* console.log((<HTMLInputElement>event.target).value) */
     
@@ -60,11 +60,13 @@ export class TopoComponent implements OnInit {
   }
   // Se der ruim mudar o type para any
   
-  public mouseIn(data: string):any{
+  public mouseIn(data: string):void{
     $(data).addClass("active");
   }
-  public mouseOut(data: string):any{
+  public mouseOut(data: string):void{
     $(data).removeClass("active");
   }
-
+  public limparPesquisa():void{
+    this.subjectPesquisa.next('')
+  }
 }
